@@ -19,7 +19,7 @@
     $Quote->authorid = $data->authorId;
     $Quote->quoteinput = $data->quote;
 
-    if ( ($Quote->id == 0) || ($Quote->quoteinput == 0) || ($Quote->categoryid == 0) || (empty($Quote->author) == 0 )){
+    if ( empty($Quote->id) || empty($Quote->quoteinput) || empty($Quote->categoryid) || (empty($Quote->authorid))){
         echo json_encode(array('message'=>'Missing Required Parameters'));
     }else{
         $Quote->update();
