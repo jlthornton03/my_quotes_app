@@ -63,6 +63,8 @@ class Author{
 
         try {
             $stmt->execute();
+            $last_id = $this->conn->lastInsertId();
+            $this->outputChange($last_id,$this->author);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
@@ -85,6 +87,7 @@ class Author{
 
         try {
             $stmt->execute();
+            $this->outputChange($this->id,$this->author);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
@@ -130,6 +133,16 @@ class Author{
         else{
             return true;
         }
+    }
+
+
+
+    public function outputChange($changeId, $changeAuthor){
+        $change_arr = array(
+            'id' => $changeId, 
+            'author' => $changeAuthor
+        );
+        echo json_encode($change_arr);
     }
 }
 

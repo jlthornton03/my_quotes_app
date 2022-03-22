@@ -87,7 +87,7 @@ class Category{
             echo json_encode(array('message'=>$e));
           }
     }
-    
+
     public function delete(){
 
         $this->checkCategory();
