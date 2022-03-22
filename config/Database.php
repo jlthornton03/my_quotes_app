@@ -24,11 +24,12 @@
             $this->host = $dbparts['host'];
             $this->username = $dbparts['user'];
             $this->password = $dbparts['pass'];
-            $this->$dbname = ltrim($dbparts['path'],'/');
-            $this->conn = null;
+            $this->dbname = ltrim($dbparts['path'],'/');
+            echo $this->url . "\n";
         }
 
         public function connect() {
+            $this->conn = null;
             try{
                 $this->conn = new PDO('mysql:host=' . $this->host . ';dbname='. $this->dbname, $this->username, $this->password);
                 $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
