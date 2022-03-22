@@ -25,7 +25,10 @@
             $this->username = $dbparts['user'];
             $this->password = $dbparts['pass'];
             $this->dbname = ltrim($dbparts['path'],'/');
-            echo $this->url . "\n";
+            echo $this->host . "\n";
+            echo $this->username . "\n";
+            echo $this->password . "\n";
+            echo $this->dbname . "\n";
         }
 
         public function connect() {
