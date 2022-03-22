@@ -116,13 +116,19 @@ class Quote{
                 categoryid =:categoryid';
 
         $stmt = $this->conn->prepare($query);
+
+        $this->quote = htmlspecialchars(strip_tags($this->quote));
+        $this->authorid = htmlspecialchars(strip_tags($this->authorid));
+        $this->categoryid = htmlspecialchars(strip_tags($this->categoryid));
+
         $stmt->bindParam(':quote', $this->quote);
         $stmt->bindParam(':authorid', $this->authorid);
         $stmt->bindParam(':categoryid', $this->categoryid);
    
         try {
             $stmt->execute();
-            $this->outputChange($this->id,$this->quoteinput,$this->authorid,$this->categoryid);
+            $last_id = $this->conn->lastInsertId();
+            $this->outputChange($last_id,$this->quote,$this->authorid,$this->categoryid);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
@@ -213,11 +219,13 @@ class Quote{
     }
 
     public function outputChange($changeId, $changeQuote, $changeAuthorId, $changeCategoryId ){
-      $this->id = $changeId;
-      $this->quote = $changeQuote;
-      $this->categoryId = $changeCategoryId;
-      $this->authorId= $changeAuthorId;
-      echo json_encode($this);
+      $output_arr = array (
+        'id' => $changeId,
+        'quote' => $changeQuote,
+        'categoryId' => $changeCategoryId,
+        'authorId' => $changeAuthorId
+      );
+      echo json_encode($output_arr);
    }
 
 }

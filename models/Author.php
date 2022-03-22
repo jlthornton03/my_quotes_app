@@ -100,7 +100,7 @@ class Author{
          $query ='delete from '. $this->table .'
               WHERE id = ?';
         
-           $stmt = $this->conn->prepare($query);
+          $stmt = $this->conn->prepare($query);
 
           $stmt->bindParam(1, $this->id);
 
