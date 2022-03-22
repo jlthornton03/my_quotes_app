@@ -184,11 +184,12 @@ class Quote{
         try {
             $stmt->execute();
             //echo json_encode(array('id' => $this->id));
-            echo json_encode(array('id' => $this->id));
+            
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
         }
+        echo json_encode(array('id' => $this->id));
     }
 
     public function checkRecord($checktable, $checkmessage, $checkid){
