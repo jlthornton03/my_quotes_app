@@ -13,6 +13,7 @@
     $createAuthor = new Author($db);
     
     $createAuthor->author = ( isset( $_GET['author'] )  ) ? strval( $_GET['author'] ) : 0;
+    echo $createAuthor->author . "\n";
     
     if (empty($createAuthor->author)==false){
         $createAuthor->create();
