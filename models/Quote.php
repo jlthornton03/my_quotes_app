@@ -209,8 +209,8 @@ class Quote{
           }
 
         if ($stmt->rowCount()==0){
-           // echo json_encode(array('message'=> $checkmessage . 'Id Not Found'));
-           echo json_encode(array('message'=>'No Quotes Found'));
+           echo json_encode(array('message'=> $checkmessage . 'Id Not Found'));
+           //echo json_encode(array('message'=>'No Quotes Found'));
            return false;
            }
         else{

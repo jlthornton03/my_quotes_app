@@ -21,7 +21,7 @@
     
     
 
-    if ( ($Quote->quote == 0) || ($Quote->categoryid == 0) || ($Quote->authorid == 0 )){
+    if ( empty($Quote->quote) || empty($Quote->categoryid) || empty($Quote->authorid)){
         echo json_encode(array('message'=>'Missing Required Parameters'));
     }else{
         $Quote->create();
