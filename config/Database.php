@@ -12,24 +12,22 @@
         private $url;
         private $dbparts;
         private $host;
-        private $dbname;
-        private $password;
-        private $username; 
+        private $dbname; 
+        private $password; 
+        private $username;
         private $conn;
 
       //  //DB Connect
         function __construct() {
             $url = getenv('JAWSDB_URL');
-            $dbparts = parse_url($this->url);
-            $host = $dbparts['host'];
-            $username = $dbparts['user'];
-            $password = $dbparts['pass'];
-            $dbname = ltrim($dbparts['path'],'/');
-            echo $url . "\n";
-            echo $host . "\n";
-            echo $username . "\n";
-            echo $password . "\n";
-            echo $dbname . "\n";
+            
+            $dbparts = parse_url($url);
+            $this->host = $dbparts['host'];
+            $this->username = $dbparts['user'];
+            $this->password = $dbparts['pass'];
+            $this->dbname = ltrim($dbparts['path'],'/');
+           // echo $dbname . "\n";
+            
         }
 
         public function connect() {
