@@ -209,8 +209,12 @@ class Quote{
           }
 
         if ($stmt->rowCount()==0){
-           echo json_encode(array('message'=> $checkmessage . 'Id Not Found'));
-           //echo json_encode(array('message'=>'No Quotes Found'));
+          if ($this->checktable == 'quotes'){
+              echo json_encode(array('message'=>'No Quotes Found'));
+            }else{
+              echo json_encode(array('message'=> $checkmessage . 'Id Not Found'));
+            }
+
            return false;
            }
         else{
