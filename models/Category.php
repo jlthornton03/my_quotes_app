@@ -140,10 +140,11 @@ class Category{
     }
 
     public function outputChange($changeId, $changeCategory){
-        $change_arr = array(
-            'id' => $changeId, 
-            'category' => $changeCategory
-        );
-        echo json_encode($change_arr);
+       // $change_arr = array(
+       //     'id' => $changeId, 
+       //     'category' => $changeCategory
+       // );
+        echo json_encode('id: ' . $changeId);
+        echo json_encode('category: ' . $changeCategory);
     }
 }
