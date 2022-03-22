@@ -20,7 +20,6 @@
 
     if($num > 0){
         $quote_arr = array();
-       // $quote_arr['data'] = array();
 
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
