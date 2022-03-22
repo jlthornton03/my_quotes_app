@@ -12,8 +12,10 @@
 
     $Author = new Author($db);
 
-    $Author->id = ( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) ) ? intval( $_GET['id'] ) : 0;
-    $Author->author = ( isset( $_GET['author'] ) && is_string( $_GET['author'] ) ) ? ( $_GET['author'] ) : 0;
+    $data = json_decode(file_get_contents("php://input"));
+
+    $Author->id = $data->id;
+    $Author->author = $data->author;
 
     if (($Author->author==0) || ($Author->id==0)) {
         echo json_encode(array('message'=>'Missing Required Parameters'));

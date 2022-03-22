@@ -12,8 +12,11 @@
 
     $Category = new Category($db);
 
-    $Category->id = ( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) ) ? intval( $_GET['id'] ) : 0;
-    $Category->category = ( isset( $_GET['category'] ) && is_string( $_GET['category'] ) ) ? ( $_GET['category'] ) : 0;
+    $data = json_decode(file_get_contents("php://input"));
+    
+    $Category->id = $data->id;
+    $Category->category = $data->category;
+
 
     if (($Category->category==0) || ($Category->id==0)) {
         echo json_encode(array('message'=>'Missing Required Parameters'));

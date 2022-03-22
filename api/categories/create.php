@@ -11,8 +11,10 @@
     $db = $database->connect();
 
     $createCategory = new Category($db);
-    
-    $createCategory->category = ( isset( $_GET['category'] ) && is_string( $_GET['category'] ) ) ? ( $_GET['category'] ) : 0;
+     
+    $data = json_decode(file_get_contents("php://input"));
+
+    $createCategory->category = $data->category;
 
     if (empty($createCategory->category)==false){
         $createCategory->create();
