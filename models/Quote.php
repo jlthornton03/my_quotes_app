@@ -172,7 +172,7 @@ class Quote{
     public function delete(){
 
        $result=$this->checkRecord('quotes','quote',$this->id);
-
+       if ($result == true){
         
         $query ='delete from '. $this->table .'
             WHERE id = ?';
@@ -188,6 +188,7 @@ class Quote{
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
+        }
     }
 
     public function checkRecord($checktable, $checkmessage, $checkid){
