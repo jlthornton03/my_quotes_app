@@ -13,10 +13,11 @@
     $createAuthor = new Author($db);
     
     $createAuthor->author = ( isset( $_GET['author'] )  ) ? strval( $_GET['author'] ) : 0;
-    echo $createAuthor->author . "\n";
+    echo $createAuthor->author;
     
     if (empty($createAuthor->author)==false){
         $createAuthor->create();
     }else{
-        echo json_encode(array('message'=>'Missing Required Parameters'));
+        echo json_encode(array('message'=>strval( $_GET['author'] )));
+        //'Missing Required Parameters'
     }
