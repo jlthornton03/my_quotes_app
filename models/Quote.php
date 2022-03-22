@@ -175,6 +175,7 @@ class Quote{
 
         try {
             $stmt->execute();
+            //echo json_encode(array('id' => $this->id));
             echo json_encode(array('id' => $this->id));
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
@@ -200,7 +201,8 @@ class Quote{
           }
 
         if ($stmt->rowCount()==0){
-            echo json_encode(array('message'=> $checkmessage . 'Id Not Found'));
+           // echo json_encode(array('message'=> $checkmessage . 'Id Not Found'));
+           echo json_encode(array('message'=>'No Quotes Found'));
            return false;
            }
         else{
