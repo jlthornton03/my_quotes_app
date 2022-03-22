@@ -19,17 +19,17 @@
 
       //  //DB Connect
         function __construct() {
-            $this->url = getenv('JAWSDB_URL');
-            $this->dbparts = parse_url($this->url);
-            $this->host = $dbparts['host'];
-            $this->username = $dbparts['user'];
-            $this->password = $dbparts['pass'];
-            $this->dbname = ltrim($dbparts['path'],'/');
-            echo $this->url . "\n";
-            echo $this->host . "\n";
-            echo $this->username . "\n";
-            echo $this->password . "\n";
-            echo $this->dbname . "\n";
+            $url = getenv('JAWSDB_URL');
+            $dbparts = parse_url($this->url);
+            $host = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $dbname = ltrim($dbparts['path'],'/');
+            echo $url . "\n";
+            echo $host . "\n";
+            echo $username . "\n";
+            echo $password . "\n";
+            echo $dbname . "\n";
         }
 
         public function connect() {
