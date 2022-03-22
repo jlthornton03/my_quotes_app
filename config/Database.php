@@ -2,12 +2,21 @@
     class Database {
         //DB Params
 
-        private $host = 'localhost';
-        private $dbname = 'quotesdb';
-        private $username = 'root';
-        private $password = '123456';
-        private $conn;
+       // private $host = 'localhost';
+       // private $dbname = 'quotesdb';
+       // private $username = 'root';
+       // private $password = '123456';
+        
 
+        private $url = getenv('JAWSDB_URL');
+        private $dbparts = parse_url($url);
+        
+        private $host = $dbparts['host'];
+        private $username = $dbparts['user'];
+        private $password = $dbparts['pass'];
+        private $dbname = ltrim($dbparts['path'],'/');
+        private $conn;
+        
       //  //DB Connect
       //  function __construct() {
       //      $this->password = getenv('mysqlpwd');
