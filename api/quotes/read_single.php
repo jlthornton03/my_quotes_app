@@ -17,7 +17,9 @@
 
         $quote_arr = array(
             'id' => $quote->id,
-            'quote' => $quote->quote
+            'quote' => $quote->quote,
+            'author' => $quote->author,
+            'category' => $quote->category,          
          );
 
         

@@ -7,43 +7,59 @@ class Quote{
     public $quote;
     public $authorid;
     public $categoryid;
+    public $author;
+    public $category;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
 
+ //  select q.id, q.quote, a.author, c.category 
+//  from quotes q
+//   left join authors a on q.authorId=a.id
+//   left join categories c on q.categoryId=c.id
+//   where q.authorId = '1' and q.categoryId = '4'
+
     public function read() {
         //Create query
         if ((empty($this->authorid)==false) && (empty($this->categoryid)==false)){
             $query = 'SELECT 
-            id, quote, authorid, categoryid
-            FROM quotes
-            where authorid= ? and categoryid = ? ';
+            q.id, q.quote, a.author, c.category 
+            FROM quotes q
+            left join authors a on q.authorId=a.id
+            left join categories c on q.categoryId=c.id
+            where q.authorid= ? and q.categoryid = ? ';
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(1, $this->authorid);
             $stmt->bindParam(2, $this->categoryid);
         }elseif(empty($this->authorid)==false){
             $query = 'SELECT 
-            id, quote, authorid, categoryid
-            FROM quotes
-            where authorid= ?';
+            q.id, q.quote, a.author, c.category 
+            FROM quotes q
+            left join authors a on q.authorId=a.id
+            left join categories c on q.categoryId=c.id
+            where q.authorid= ?';
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(1, $this->authorid);
         }elseif(empty($this->categoryid)==false){
             $query = 'SELECT 
-            id, quote, authorid, categoryid
-            FROM quotes
-            where categoryid= ?';
+            q.id, q.quote, a.author, c.category 
+            FROM quotes q
+            left join authors a on q.authorId=a.id
+            left join categories c on q.categoryId=c.id
+            where q.categoryid= ?';
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(1, $this->categoryid);
         }else{
             $query = 'SELECT 
-            id, quote, authorid, categoryid
-            FROM quotes';
+            q.id, q.quote, a.author, c.category 
+            FROM quotes q
+            left join authors a on q.authorId=a.id
+            left join categories c on q.categoryId=c.id';
             $stmt = $this->conn->prepare($query);
         }
   
@@ -59,9 +75,11 @@ class Quote{
     //read a single category based on ?id=#
     public function read_single() {
         $query = 'SELECT 
-            id, quote, authorid, categoryid
-            FROM quotes
-            where id= ? ';
+            q.id, q.quote, a.author, c.category 
+            FROM quotes q
+            left join authors a on q.authorId=a.id
+            left join categories c on q.categoryId=c.id
+            where q.id= ? ';
 
         $stmt = $this->conn->prepare($query);
 
@@ -77,6 +95,8 @@ class Quote{
 
         $this->id = $row['id'];
         $this->quote = $row['quote'];
+        $this->author = $row['author'];
+        $this->category = $row['category'];
     }
 
     public function create(){

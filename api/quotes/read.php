@@ -27,8 +27,8 @@
             $quote_item = array(
                 'id' => $id,
                 'quote' => $quote,
-                'authorid' => $authorid,
-                'categoryid' => $categoryid
+                'author' => $author,
+                'category' => $category
             );
           array_push($quote_arr, $quote_item);  
         }

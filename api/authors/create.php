@@ -1,8 +1,6 @@
 <?php
 
-    header('Access-Control-Allow-Origin: *');
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
+
 
     include_once '../../config/Database.php';
     include_once '../../models/Author.php';
@@ -17,6 +15,5 @@
     if (empty($createAuthor->author)==false){
         $createAuthor->create();
     }else{
-        echo json_encode(array('message'=>strval( $_GET['author'] )));
-        //'Missing Required Parameters'
+        echo json_encode(array('message'=>'Missing Required Parameters'));
     }
