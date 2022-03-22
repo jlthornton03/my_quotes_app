@@ -62,6 +62,8 @@ class Category{
         $stmt->bindParam(1, $this->category);
         try {
             $stmt->execute();
+            $last_id = $this->conn->lastInsertId();
+            $this->outputChange($last_id,$this->category);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           } 
@@ -83,6 +85,7 @@ class Category{
 
         try {
             $stmt->execute();
+            $this->outputChange($this->id,$this->category);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
@@ -126,8 +129,19 @@ class Category{
            return false;
            }
         else{
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+         //   $this->id = $row['id'];
+         //   $this->category = $row['category'];
             return true;
         }
     }
 
+    public function outputChange($changeId, $changeCategory){
+        $change_arr = array(
+            'id' => $changeId, 
+            'category' => $changeCategory
+        );
+        echo json_encode(array($change_arr));
+    }
 }

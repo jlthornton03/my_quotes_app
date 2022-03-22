@@ -142,7 +142,7 @@ class Author{
             'id' => $changeId, 
             'author' => $changeAuthor
         );
-        echo json_encode($change_arr);
+        echo json_encode(array($change_arr));
     }
 }
 
