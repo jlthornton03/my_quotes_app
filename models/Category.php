@@ -85,8 +85,8 @@ class Category{
             $stmt->bindParam(2, $this->id);
 
          try {
-             $stmt->execute();
-              $this->outputChange($this->id,$this->category);
+            $stmt->execute();
+            $this->outputChange($this->id,$this->category);
             } catch (Exception $e) {
                 echo json_encode(array('message'=>$e));
             }
@@ -140,10 +140,6 @@ class Category{
     }
     
     public function outputChange($changeId, $changeCategory){
-       // $change_arr = array(
-       //     'id' => $changeId, 
-       //     'category' => $changeCategory
-       // );
        $this->id = $changeId;
        $this->category = $changeCategory;
        echo json_encode($this);

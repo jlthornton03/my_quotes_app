@@ -122,6 +122,7 @@ class Quote{
    
         try {
             $stmt->execute();
+            $this->outputChange($this->id,$this->quoteinput,$this->authorid,$this->categoryid);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
@@ -155,6 +156,7 @@ class Quote{
        ////mysql catching 
         try {
             $stmt->execute();
+            $this->outputChange($this->id,$this->quoteinput,$this->authorid,$this->categoryid);
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
@@ -209,5 +211,13 @@ class Quote{
             return true;
         }
     }
+
+    public function outputChange($changeId, $changeQuote, $changeAuthorId, $changeCategoryId ){
+      $this->id = $changeId;
+      $this->quote = $changeQuote;
+      $this->categoryId = $changeCategoryId;
+      $this->authorId= $changeAuthorId;
+      echo json_encode($this);
+   }
 
 }
