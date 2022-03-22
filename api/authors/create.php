@@ -10,7 +10,12 @@
 
     $createAuthor = new Author($db);
     
-    $createAuthor->author = ( isset( $_GET['author'] )  ) ? strval( $_GET['author'] ) : 0;
+    $data = json_decode(file_get_contents("php://input"));
+
+    $createAuthor->author = $data->author;
+
+
+    //$createAuthor->author = ( isset( $_GET['author'] )  ) ? strval( $_GET['author'] ) : 0;
     
     if (empty($createAuthor->author)==false){
         $result=$createAuthor->create();    
