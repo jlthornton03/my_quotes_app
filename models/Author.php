@@ -72,8 +72,8 @@ class Author{
 
     public function update(){
 
-        $this->checkAuthor();
-
+        $result = $this->checkAuthor();
+        if ($result == true){
         $query ='UPDATE '. $this->table .'
             SET author = ?
             WHERE id = ?';
@@ -91,24 +91,26 @@ class Author{
           } catch (Exception $e) {
             echo json_encode(array('message'=>$e));
           }
+        }
     }
 
     public function delete(){
-
-        $this->checkAuthor();
-
-        $query ='delete from '. $this->table .'
-            WHERE id = ?';
+        $result = $this->checkAuthor();
+        if ($result == true){
+         $query ='delete from '. $this->table .'
+              WHERE id = ?';
         
-        $stmt = $this->conn->prepare($query);
+           $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(1, $this->id);
+          $stmt->bindParam(1, $this->id);
 
-        try {
-            $stmt->execute();
-          } catch (Exception $e) {
-            echo json_encode(array('message'=>$e));
-          }
+          try {
+             $stmt->execute();
+                echo json_encode(array('id' => $this->id));
+              } catch (Exception $e) {
+                echo json_encode(array('message'=>$e));
+              }
+        }
     }
 
     public function checkAuthor(){
@@ -142,7 +144,7 @@ class Author{
             'id' => $changeId, 
             'author' => $changeAuthor
         );
-        echo json_encode(array($change_arr));
+        echo json_encode($change_arr);
     }
 }
 

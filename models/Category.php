@@ -71,42 +71,46 @@ class Category{
 
     public function update(){
 
-        $this->checkCategory();
-        $query ='UPDATE '. $this->table .'
-            SET category = ?
-            WHERE id = ?';
-        
-        $stmt = $this->conn->prepare($query);
+        $result=$this->checkCategory();
+        if ($result == true){
+         $query ='UPDATE '. $this->table .'
+              SET category = ?
+                WHERE id = ?';
+            
+            $stmt = $this->conn->prepare($query);
 
-        $this->category = htmlspecialchars(strip_tags($this->category));
+         $this->category = htmlspecialchars(strip_tags($this->category));
 
-        $stmt->bindParam(1, $this->category);
-        $stmt->bindParam(2, $this->id);
+            $stmt->bindParam(1, $this->category);
+            $stmt->bindParam(2, $this->id);
 
-        try {
-            $stmt->execute();
-            $this->outputChange($this->id,$this->category);
-          } catch (Exception $e) {
-            echo json_encode(array('message'=>$e));
-          }
+         try {
+             $stmt->execute();
+              $this->outputChange($this->id,$this->category);
+            } catch (Exception $e) {
+                echo json_encode(array('message'=>$e));
+            }
+        }
     }
 
     public function delete(){
 
-        $this->checkCategory();
-
-        $query ='delete from '. $this->table .'
-            WHERE id = ?';
+        $result=$this->checkCategory();
+        if ($result == true){
+          $query ='delete from '. $this->table .'
+             WHERE id = ?';
         
-        $stmt = $this->conn->prepare($query);
+         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(1, $this->id);
+          $stmt->bindParam(1, $this->id);
 
-        try {
-            $stmt->execute();
-          } catch (Exception $e) {
-            echo json_encode(array('message'=>$e));
-          }
+          try {
+                $stmt->execute();
+             echo json_encode(array('id' => $this->id));
+           } catch (Exception $e) {
+                echo json_encode(array('message'=>$e));
+              }
+        }
     }
 
     public function checkCategory(){
@@ -131,8 +135,6 @@ class Category{
         else{
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-         //   $this->id = $row['id'];
-         //   $this->category = $row['category'];
             return true;
         }
     }
@@ -142,6 +144,6 @@ class Category{
             'id' => $changeId, 
             'category' => $changeCategory
         );
-        echo json_encode(array($change_arr));
+        echo json_encode($change_arr);
     }
 }
