@@ -31,7 +31,7 @@
                 'authorid' => $authorid,
                 'categoryid' => $categoryid
             );
-          array_push($quote_arr['data'], $quote_item);  
+          array_push($quote_arr, $quote_item);  
         }
 
         echo json_encode($quote_arr);
