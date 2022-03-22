@@ -15,8 +15,8 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $Quote->categoryid = $data->categoryid;
-    $Quote->authorid = $data->authorid;
+    $Quote->categoryid = $data->categoryId;
+    $Quote->authorid = $data->authorId;
     $Quote->quote = $data->quote;
     
     if ( ($Quote->quote == 0) || ($Quote->categoryid == 0) || ($Quote->authorid == 0 )){

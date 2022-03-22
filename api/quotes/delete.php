@@ -12,7 +12,8 @@
 
     $deleteQuote = new Quote($db);
     
-    $deleteQuote->id = ( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) ) ? ( $_GET['id'] ) : 0;
+    $data = json_decode(file_get_contents("php://input"));
+    $deleteQuote->id = $data->id;
     
     if (empty($deleteQuote->id)==false){
         $deleteQuote->delete();

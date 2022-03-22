@@ -12,7 +12,9 @@
 
     $deleteAuthor = new Author($db);
     
-    $deleteAuthor->id = ( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) ) ? ( $_GET['id'] ) : 0;
+    $data = json_decode(file_get_contents("php://input"));
+
+    $deleteAuthor->id = $data->id;
     
     if (empty($deleteAuthor->id)==false){
         $deleteAuthor->delete();
