@@ -87,6 +87,24 @@ class Category{
             echo json_encode(array('message'=>$e));
           }
     }
+    
+    public function delete(){
+
+        $this->checkCategory();
+
+        $query ='delete from '. $this->table .'
+            WHERE id = ?';
+        
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->id);
+
+        try {
+            $stmt->execute();
+          } catch (Exception $e) {
+            echo json_encode(array('message'=>$e));
+          }
+    }
 
     public function checkCategory(){
         

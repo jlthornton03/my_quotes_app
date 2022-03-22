@@ -99,8 +99,6 @@ class Author{
         
         $stmt = $this->conn->prepare($query);
 
-        $this->author = htmlspecialchars(strip_tags($this->author));
-
         $stmt->bindParam(1, $this->id);
 
         try {
@@ -109,7 +107,7 @@ class Author{
             echo json_encode(array('message'=>$e));
           }
     }
-    
+
     public function checkAuthor(){
         
         $query = 'Select * 

@@ -141,6 +141,24 @@ class Quote{
 
     }
 
+    public function delete(){
+
+       $result=$this->checkRecord('quotes','quote',$this->id);
+
+        
+        $query ='delete from '. $this->table .'
+            WHERE id = ?';
+        
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->id);
+
+        try {
+            $stmt->execute();
+          } catch (Exception $e) {
+            echo json_encode(array('message'=>$e));
+          }
+    }
 
     public function checkRecord($checktable, $checkmessage, $checkid){
         $this->checktable = $checktable;

@@ -20,6 +20,8 @@
         include_once 'create.php';
     }elseif($method == 'PUT'){
         include_once 'update.php';
+    }elseif($method == 'DELETE'){
+        include_once 'delete.php';
     }else{
         echo "Not Configured";
     }
