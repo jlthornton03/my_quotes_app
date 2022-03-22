@@ -138,13 +138,14 @@ class Category{
             return true;
         }
     }
-
+    
     public function outputChange($changeId, $changeCategory){
        // $change_arr = array(
        //     'id' => $changeId, 
        //     'category' => $changeCategory
        // );
-        echo json_encode('id: ' . $changeId);
-        echo json_encode('category: ' . $changeCategory);
+       $this->id = $changeId;
+       $this->category = $changeCategory;
+       echo json_encode($this);
     }
 }
