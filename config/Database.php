@@ -20,7 +20,6 @@
       //  //DB Connect
         function __construct() {
             $url = getenv('JAWSDB_URL');
-            
             $dbparts = parse_url($url);
             $this->host = $dbparts['host'];
             $this->username = $dbparts['user'];
